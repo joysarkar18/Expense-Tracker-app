@@ -159,9 +159,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Container(
                     height: MediaQuery.of(context).size.height / 3,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
-                      image: AssetImage('Assets/Images/backpic.png'),
+                      image: AssetImage('Assets/Images/signupback.png'),
                     )),
                   ),
                 ]),

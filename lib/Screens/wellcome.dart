@@ -37,7 +37,7 @@ class WellcomeScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.8,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(LoginScreen());
+                  Get.to(() => LoginScreen());
                 },
                 child: Container(
                     padding: const EdgeInsets.all(16),
@@ -52,7 +52,7 @@ class WellcomeScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.8,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(Get.to(SignUpScreen()));
+                  Get.to(Get.to(() => SignUpScreen()));
                 },
                 child: Container(
                     padding: const EdgeInsets.all(16),
