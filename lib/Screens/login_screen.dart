@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
+import '../Controller/signUp_controller.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -21,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var logInController = Get.put(SignupController());
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -68,13 +71,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(
                           height: 4,
                         ),
-                        const Card(
+                        Card(
                           shadowColor: Color.fromARGB(120, 14, 14, 14),
                           elevation: 6,
                           shape: BeveledRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(13))),
                           child: TextField(
+                            controller: logInController.emailController,
                             decoration: InputDecoration(
                               hintText: "Enter your Email",
                               prefixIcon: Icon(
@@ -109,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(13))),
                           child: TextField(
+                            controller: logInController.passwordController,
                             obscureText: _isVisible ? false : true,
                             decoration: InputDecoration(
                               hintText: "Enter your Password",
@@ -142,7 +147,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(LoginScreen());
+                        SignupController.instance.loginUser(
+                            logInController.emailController.text.trim(),
+                            logInController.passwordController.text.trim());
                       },
                       child: Container(
                           padding: const EdgeInsets.all(16),

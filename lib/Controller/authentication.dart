@@ -40,4 +40,6 @@ class Authentication extends GetxController {
       print("error in signin");
     }
   }
+
+  Future<void> logOut() async => await _auth.signOut();
 }
