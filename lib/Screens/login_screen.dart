@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 55,
+                    height: 54,
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
