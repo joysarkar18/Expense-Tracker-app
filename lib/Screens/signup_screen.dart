@@ -192,8 +192,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Don't have Account?"),
-                      TextButton(onPressed: () {}, child: Text("Sign Up"))
+                      Text("Have Account?"),
+                      TextButton(onPressed: () {}, child: Text("Sign In"))
                     ],
                   ),
                 ]),
