@@ -1,4 +1,5 @@
 import 'package:expense_app/Constant/constant.dart';
+import 'package:expense_app/Controller/authentication.dart';
 import 'package:expense_app/Screens/login_screen.dart';
 import 'package:expense_app/Screens/wellcome.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,7 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
+  ).then((value) => Get.put(Authentication()));
   runApp(const MyApp());
 }
 
