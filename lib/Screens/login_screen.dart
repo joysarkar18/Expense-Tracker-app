@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isVisible = false;
   void updateStatus() {
     setState(() {
-      _isVisible = _isVisible;
+      _isVisible = !_isVisible;
     });
   }
 
