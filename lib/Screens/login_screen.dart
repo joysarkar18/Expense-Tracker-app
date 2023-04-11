@@ -1,4 +1,7 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:expense_app/Constant/constant.dart';
+import 'package:expense_app/Controller/authentication.dart';
+import 'package:expense_app/Screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -14,11 +17,18 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final fromKey = GlobalKey<FormState>();
   bool _isVisible = false;
   void updateStatus() {
     setState(() {
       _isVisible = !_isVisible;
     });
+  }
+
+  @override
+  void dispose() {
+    Authentication.instance.errorMsg!.value = "";
+    super.dispose();
   }
 
   @override
@@ -57,87 +67,106 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(left: 12),
-                          child: const Text("Email",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w400)),
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        Card(
-                          shadowColor: Color.fromARGB(120, 14, 14, 14),
-                          elevation: 6,
-                          shape: BeveledRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(13))),
-                          child: TextField(
-                            controller: logInController.emailController,
-                            decoration: InputDecoration(
-                              hintText: "Enter your Email",
-                              prefixIcon: Icon(
-                                Icons.email_rounded,
-                                color: Colors.black,
+                  Form(
+                    key: fromKey,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: 12),
+                            child: const Text("Email",
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w400)),
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Card(
+                            shadowColor: Color.fromARGB(120, 14, 14, 14),
+                            elevation: 6,
+                            shape: BeveledRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(13))),
+                            child: TextFormField(
+                              controller: logInController.emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              autofillHints: [AutofillHints.email],
+                              validator: (email) => email != null &&
+                                      !EmailValidator.validate(email)
+                                  ? "Enter a valid email"
+                                  : null,
+                              decoration: InputDecoration(
+                                hintText: "Enter your Email",
+                                prefixIcon: Icon(
+                                  Icons.email_rounded,
+                                  color: Colors.black,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(13)),
+                                    borderSide: BorderSide(color: Colors.grey)),
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(13)),
-                                  borderSide: BorderSide(color: Colors.grey)),
                             ),
                           ),
-                        ),
 
-                        //password
-                        SizedBox(
-                          height: 24,
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 12),
-                          child: Text("Password",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w400)),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Card(
-                          shadowColor: Color.fromARGB(120, 14, 14, 14),
-                          elevation: 6,
-                          shape: BeveledRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(13))),
-                          child: TextField(
-                            controller: logInController.passwordController,
-                            obscureText: _isVisible ? false : true,
-                            decoration: InputDecoration(
-                              hintText: "Enter your Password",
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                color: Colors.black,
+                          //password
+                          SizedBox(
+                            height: 24,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 12),
+                            child: Text("Password",
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w400)),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Card(
+                            shadowColor: Color.fromARGB(120, 14, 14, 14),
+                            elevation: 6,
+                            shape: BeveledRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(13))),
+                            child: TextFormField(
+                              controller: logInController.passwordController,
+                              validator: (value) => validatePassword(value),
+                              obscureText: _isVisible ? false : true,
+                              decoration: InputDecoration(
+                                hintText: "Enter your Password",
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  color: Colors.black,
+                                ),
+                                suffixIcon: IconButton(
+                                  color: Colors.black,
+                                  onPressed: () => updateStatus(),
+                                  icon: Icon(_isVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(13)),
+                                    borderSide: BorderSide(
+                                        color: Color.fromARGB(
+                                            255, 158, 158, 158))),
                               ),
-                              suffixIcon: IconButton(
-                                color: Colors.black,
-                                onPressed: () => updateStatus(),
-                                icon: Icon(_isVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(13)),
-                                  borderSide: BorderSide(
-                                      color:
-                                          Color.fromARGB(255, 158, 158, 158))),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Obx(
+                    () => Text(
+                      Authentication.instance.errorMsg!.value,
+                      style: TextStyle(color: Colors.red),
                     ),
                   ),
                   SizedBox(
@@ -147,9 +176,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: ElevatedButton(
                       onPressed: () {
-                        SignupController.instance.loginUser(
-                            logInController.emailController.text.trim(),
-                            logInController.passwordController.text.trim());
+                        final from = fromKey.currentState!;
+                        if (from.validate()) {
+                          SignupController.instance.loginUser(
+                              logInController.emailController.text.trim(),
+                              logInController.passwordController.text.trim());
+                        }
                       },
                       child: Container(
                           padding: const EdgeInsets.all(16),
@@ -161,11 +193,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("Don't have Account?"),
-                      TextButton(onPressed: () {}, child: Text("Sign Up"))
+                      TextButton(
+                          onPressed: () {
+                            Get.off(() => SignUpScreen());
+                          },
+                          child: Text("Sign Up"))
                     ],
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height / 3,
+                    height: MediaQuery.of(context).size.height / 3.5,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
                       image: AssetImage('Assets/Images/signupback.png'),
@@ -177,4 +213,14 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ));
   }
+}
+
+String? validatePassword(String? pass) {
+  if (pass == null || pass.length == 0) {
+    return "please enter the password";
+  }
+  if (pass.length < 5) {
+    return "password can't be to short";
+  }
+  return null;
 }
