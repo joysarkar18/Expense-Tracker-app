@@ -4,10 +4,10 @@ import '../Constant/constant.dart';
 
 class Themes {
   static final light = ThemeData(
-    canvasColor: myBlue,
+    canvasColor: Colors.white,
     brightness: Brightness.light,
     appBarTheme: AppBarTheme(
-        color: myBlue, iconTheme: IconThemeData(color: Colors.black)),
+        color: Colors.white, iconTheme: IconThemeData(color: Colors.black)),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(13)),

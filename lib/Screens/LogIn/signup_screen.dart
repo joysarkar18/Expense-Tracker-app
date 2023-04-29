@@ -1,22 +1,21 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:expense_app/Constant/constant.dart';
-import 'package:expense_app/Controller/authentication.dart';
-import 'package:expense_app/Screens/signup_screen.dart';
+import 'package:expense_app/Controller/signUp_controller.dart';
+import 'package:expense_app/Screens/LogIn/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
-import '../Controller/signUp_controller.dart';
+import '../../Controller/authentication.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final fromKey = GlobalKey<FormState>();
   bool _isVisible = false;
   void updateStatus() {
@@ -27,18 +26,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    Authentication.instance.errorMsg!.value = "";
+    Authentication.instance.errorMsgup!.value = "";
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    var logInController = Get.put(SignupController());
+    var signupController = Get.put(SignupController());
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_ios_new,
               size: 20,
             ),
@@ -55,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: Get.height,
                 child: Column(children: [
                   const Text(
-                    "Sign In",
+                    "Sign Up",
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.w900,
@@ -70,13 +69,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   Form(
                     key: fromKey,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             margin: EdgeInsets.only(left: 12),
-                            child: const Text("Email",
+                            child: const Text("Name",
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.w400)),
                           ),
@@ -90,9 +89,43 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(13))),
                             child: TextFormField(
-                              controller: logInController.emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              autofillHints: [AutofillHints.email],
+                              controller: signupController.nameController,
+                              validator: (value) => validateName(value),
+                              decoration: InputDecoration(
+                                hintText: "Enter your Name",
+                                prefixIcon: Icon(
+                                  Icons.person_2_rounded,
+                                  color: Colors.black,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(13)),
+                                    borderSide: BorderSide(color: Colors.grey)),
+                              ),
+                            ),
+                          ),
+
+                          //password
+                          SizedBox(
+                            height: 24,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 12),
+                            child: Text("Email",
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w400)),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Card(
+                            shadowColor: Color.fromARGB(120, 14, 14, 14),
+                            elevation: 6,
+                            shape: BeveledRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(13))),
+                            child: TextFormField(
+                              controller: signupController.emailController,
                               validator: (email) => email != null &&
                                       !EmailValidator.validate(email)
                                   ? "Enter a valid email"
@@ -106,12 +139,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(13)),
-                                    borderSide: BorderSide(color: Colors.grey)),
+                                    borderSide: BorderSide(
+                                        color: Color.fromARGB(
+                                            255, 158, 158, 158))),
                               ),
                             ),
                           ),
-
-                          //password
                           SizedBox(
                             height: 24,
                           ),
@@ -131,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(13))),
                             child: TextFormField(
-                              controller: logInController.passwordController,
+                              controller: signupController.passwordController,
                               validator: (value) => validatePassword(value),
                               obscureText: _isVisible ? false : true,
                               decoration: InputDecoration(
@@ -165,12 +198,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Obx(
                     () => Text(
-                      Authentication.instance.errorMsg!.value,
+                      Authentication.instance.errorMsgup!.value,
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
                   SizedBox(
-                    height: 54,
+                    height: 55,
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
@@ -178,34 +211,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         final from = fromKey.currentState!;
                         if (from.validate()) {
-                          SignupController.instance.loginUser(
-                              logInController.emailController.text.trim(),
-                              logInController.passwordController.text.trim());
+                          SignupController.instance.registerUser(
+                              signupController.emailController.text.trim(),
+                              signupController.passwordController.text.trim());
                         }
                       },
                       child: Container(
                           padding: const EdgeInsets.all(16),
-                          child: const Text("Sign In",
+                          child: const Text("Sign Up",
                               style: TextStyle(fontSize: 16))),
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Don't have Account?"),
+                      Text("Have Account?"),
                       TextButton(
                           onPressed: () {
-                            Get.off(() => SignUpScreen());
+                            Get.off(() => LoginScreen());
                           },
-                          child: Text("Sign Up"))
+                          child: Text("Sign In"))
                     ],
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height / 3.5,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage('Assets/Images/signupback.png'),
-                    )),
                   ),
                 ]),
               ),
@@ -216,11 +242,21 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 String? validatePassword(String? pass) {
-  if (pass == null || pass.length == 0) {
+  if (pass == null || pass.isEmpty) {
     return "please enter the password";
   }
   if (pass.length < 5) {
-    return "password can't be to short";
+    return "password is to short";
+  }
+  return null;
+}
+
+String? validateName(String? name) {
+  if (name == null || name.isEmpty) {
+    return "please enter your Name";
+  }
+  if (name.length < 3) {
+    return "Name is to short";
   }
   return null;
 }

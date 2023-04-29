@@ -1,3 +1,3 @@
 import 'package:flutter/material.dart';
 
-final Color myBlue = Color.fromARGB(255, 112, 201, 237);
+final Color myBlue = Color.fromARGB(255, 192, 218, 255);

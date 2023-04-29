@@ -1,9 +1,11 @@
-import 'package:expense_app/Screens/home_screen.dart';
-import 'package:expense_app/Screens/wellcome.dart';
+import 'package:expense_app/Screens/Home/home_screen.dart';
+import 'package:expense_app/Screens/LogIn/wellcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+
+import '../Screens/Navigation/buttom_nav_bar.dart';
 
 class Authentication extends GetxController {
   static Authentication get instance => Get.find();

@@ -1,6 +1,6 @@
 import 'package:expense_app/Constant/constant.dart';
-import 'package:expense_app/Screens/login_screen.dart';
-import 'package:expense_app/Screens/signup_screen.dart';
+import 'package:expense_app/Screens/LogIn/login_screen.dart';
+import 'package:expense_app/Screens/LogIn/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
