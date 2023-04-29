@@ -11,7 +11,6 @@ import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
-
   @override
   Widget build(BuildContext context) {
     ButtomNavigationController _navcontroller = ButtomNavigationController();

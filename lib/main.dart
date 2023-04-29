@@ -2,6 +2,7 @@ import 'package:expense_app/Constant/constant.dart';
 import 'package:expense_app/Controller/authentication.dart';
 import 'package:expense_app/Screens/LogIn/login_screen.dart';
 import 'package:expense_app/Screens/LogIn/wellcome.dart';
+import 'package:expense_app/Screens/Splash/splash_home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: Themes.light,
       darkTheme: Themes.dark,
-      home: const WellcomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

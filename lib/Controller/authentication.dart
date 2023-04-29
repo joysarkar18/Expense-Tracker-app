@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:expense_app/Screens/Home/home_screen.dart';
 import 'package:expense_app/Screens/LogIn/wellcome.dart';
+import 'package:expense_app/Screens/Splash/splash_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -24,9 +27,11 @@ class Authentication extends GetxController {
   }
 
   _setInitScreen(User? user) {
-    user == null
-        ? Get.offAll(() => WellcomeScreen())
-        : Get.offAll(() => Home());
+    Timer(const Duration(seconds: 4), () {
+      user == null
+          ? Get.offAll(() => const WellcomeScreen())
+          : Get.offAll(() => const Home());
+    });
   }
 
   Future<void> createUserWithEmailPassword(
