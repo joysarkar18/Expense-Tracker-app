@@ -16,21 +16,33 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 4), () {});
+    Timer(Duration(milliseconds: 500), () {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 88, 156, 211),
+      backgroundColor: Get.isDarkMode ? Colors.black : Colors.blue.shade50,
       body: Center(
-        child: Container(
-          child: Lottie.network(
-            'https://assets3.lottiefiles.com/packages/lf20_06a6pf9i.json',
-            width: Get.width * 0.7,
-            height: Get.width * 0.7,
-            fit: BoxFit.fill,
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              child: Lottie.asset("Assets/Lottie/92478-money.json",
+                  height: 250, width: 300, fit: BoxFit.fill, repeat: false),
+            ),
+            SizedBox(
+              height: Get.height * 0.25,
+            ),
+            const Text(
+              "EXPENSE TRACKER APP",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text("by-Joy Sarkar"),
+          ],
         ),
       ),
     );

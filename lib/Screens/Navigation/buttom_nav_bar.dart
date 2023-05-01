@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -39,54 +40,63 @@ class Home extends StatelessWidget {
                 Center(
                   heightFactor: 0.05,
                   child: FloatingActionButton(
+                    backgroundColor: Colors.cyan,
                     elevation: 2,
                     onPressed: () {},
-                    child: const Icon(Icons.add, size: 34),
+                    child: Lottie.asset("Assets/Lottie/127657-add-button.json"),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          _navcontroller.pageIndex.value = 0;
-                        },
-                        icon: const Icon(
-                          Icons.home_filled,
-                          color: Colors.blue,
-                        )),
-                    IconButton(
-                        onPressed: () {
-                          _navcontroller.pageIndex.value = 1;
-                        },
-                        icon: const Icon(
-                          Icons.swap_horizontal_circle,
-                          color: Colors.blue,
-                        )),
-                    const SizedBox(
-                      width: 14,
-                    ),
-                    const SizedBox(
-                      width: 14,
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          _navcontroller.pageIndex.value = 2;
-                        },
-                        icon: const Icon(
-                          Icons.signal_cellular_alt_rounded,
-                          color: Colors.blue,
-                        )),
-                    IconButton(
-                        onPressed: () {
-                          _navcontroller.pageIndex.value = 3;
-                        },
-                        icon: const Icon(
-                          Icons.person,
-                          color: Colors.blue,
-                        ))
-                  ],
-                )
+                Obx(() => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              _navcontroller.pageIndex.value = 0;
+                            },
+                            icon: Icon(
+                              Icons.home_filled,
+                              color: _navcontroller.pageIndex.value == 0
+                                  ? Colors.purple
+                                  : Colors.blue,
+                            )),
+                        IconButton(
+                            onPressed: () {
+                              _navcontroller.pageIndex.value = 1;
+                            },
+                            icon: Icon(
+                              Icons.swap_horizontal_circle,
+                              color: _navcontroller.pageIndex.value == 1
+                                  ? Colors.purple
+                                  : Colors.blue,
+                            )),
+                        const SizedBox(
+                          width: 14,
+                        ),
+                        const SizedBox(
+                          width: 14,
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              _navcontroller.pageIndex.value = 2;
+                            },
+                            icon: Icon(
+                              Icons.signal_cellular_alt_rounded,
+                              color: _navcontroller.pageIndex.value == 2
+                                  ? Colors.purple
+                                  : Colors.blue,
+                            )),
+                        IconButton(
+                            onPressed: () {
+                              _navcontroller.pageIndex.value = 3;
+                            },
+                            icon: Icon(
+                              Icons.person,
+                              color: _navcontroller.pageIndex.value == 3
+                                  ? Colors.purple
+                                  : Colors.blue,
+                            ))
+                      ],
+                    ))
               ]),
             )),
         Obx(
