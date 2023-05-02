@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:expense_app/Screens/Home/home_screen.dart';
 import 'package:expense_app/Screens/LogIn/wellcome.dart';
-import 'package:expense_app/Screens/Splash/splash_home.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:get/get.dart';
 
 import '../Screens/Navigation/buttom_nav_bar.dart';
@@ -24,6 +22,8 @@ class Authentication extends GetxController {
     firebaseUser = Rx<User?>(_auth.currentUser);
     firebaseUser.bindStream(_auth.userChanges());
     ever(firebaseUser, _setInitScreen);
+
+    print(_auth.currentUser?.email);
   }
 
   _setInitScreen(User? user) {

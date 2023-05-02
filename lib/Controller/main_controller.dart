@@ -9,6 +9,6 @@ class MainController extends GetxController {
   var firebaseUser = FirebaseAuth.instance.currentUser;
 
   createUserData(String name, String email) async {
-    await _db.collection("user").doc(email).set({"name": name});
+    await _db.collection("user").doc(email).set({"name": name, "email": email});
   }
 }
