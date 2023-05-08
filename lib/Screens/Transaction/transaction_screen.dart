@@ -7,8 +7,6 @@ class TransactionDcreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Transactions"),
-    );
+    return Container(child: Column(children: [Text("Transactions List")],),);
   }
 }
