@@ -1,6 +1,4 @@
 import 'package:expense_app/Controller/authentication.dart';
-import 'package:expense_app/Controller/main_controller.dart';
-import 'package:expense_app/Controller/signUp_controller.dart';
 import 'package:expense_app/Screens/Splash/splash_home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

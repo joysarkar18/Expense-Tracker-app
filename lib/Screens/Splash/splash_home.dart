@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:expense_app/Constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -16,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(milliseconds: 500), () {});
+    Timer(const Duration(milliseconds: 500), () {});
   }
 
   @override
@@ -38,10 +37,10 @@ class _SplashScreenState extends State<SplashScreen> {
               "EXPENSE TRACKER APP",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
-            Text("by-Joy Sarkar"),
+            const Text("by-Joy Sarkar"),
           ],
         ),
       ),

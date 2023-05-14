@@ -1,10 +1,7 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:expense_app/Constant/constant.dart';
 import 'package:expense_app/Controller/authentication.dart';
 import 'package:expense_app/Screens/LogIn/signup_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 import '../../Controller/signUp_controller.dart';
@@ -55,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Center(
               child: SafeArea(
                 child: Center(
-                  child: Container(
+                  child: SizedBox(
                     height: Get.height,
                     child: Column(children: [
                       const Text(
@@ -79,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                margin: EdgeInsets.only(left: 12),
+                                margin: const EdgeInsets.only(left: 12),
                                 child: const Text("Email",
                                     style: TextStyle(
                                         fontSize: 16,
@@ -89,20 +86,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 4,
                               ),
                               Card(
-                                shadowColor: Color.fromARGB(120, 14, 14, 14),
+                                shadowColor: const Color.fromARGB(120, 14, 14, 14),
                                 elevation: 6,
-                                shape: BeveledRectangleBorder(
+                                shape: const BeveledRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(13))),
                                 child: TextFormField(
                                   controller: logInController.emailController,
                                   keyboardType: TextInputType.emailAddress,
-                                  autofillHints: [AutofillHints.email],
+                                  autofillHints: const [AutofillHints.email],
                                   validator: (email) => email != null &&
                                           !EmailValidator.validate(email)
                                       ? "Enter a valid email"
                                       : null,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     hintText: "Enter your Email",
                                     prefixIcon: Icon(
                                       Icons.email_rounded,
@@ -118,23 +115,23 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
 
                               //password
-                              SizedBox(
+                              const SizedBox(
                                 height: 24,
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 12),
-                                child: Text("Password",
+                                margin: const EdgeInsets.only(left: 12),
+                                child: const Text("Password",
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400)),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 4,
                               ),
                               Card(
-                                shadowColor: Color.fromARGB(120, 14, 14, 14),
+                                shadowColor: const Color.fromARGB(120, 14, 14, 14),
                                 elevation: 6,
-                                shape: BeveledRectangleBorder(
+                                shape: const BeveledRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(13))),
                                 child: TextFormField(
@@ -144,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   obscureText: _isVisible ? false : true,
                                   decoration: InputDecoration(
                                     hintText: "Enter your Password",
-                                    prefixIcon: Icon(
+                                    prefixIcon: const Icon(
                                       Icons.lock,
                                       color: Colors.black,
                                     ),
@@ -155,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ? Icons.visibility
                                           : Icons.visibility_off),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(13)),
                                         borderSide: BorderSide(
@@ -168,16 +165,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Obx(
                         () => Text(
                           Authentication.instance.errorMsg!.value,
-                          style: TextStyle(color: Colors.red),
+                          style: const TextStyle(color: Colors.red),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 54,
                       ),
                       SizedBox(
@@ -201,12 +198,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Don't have Account?"),
+                          const Text("Don't have Account?"),
                           TextButton(
                               onPressed: () {
-                                Get.off(() => SignUpScreen());
+                                Get.off(() => const SignUpScreen());
                               },
-                              child: Text("Sign Up"))
+                              child: const Text("Sign Up"))
                         ],
                       ),
                       Container(
@@ -227,7 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 String? validatePassword(String? pass) {
-  if (pass == null || pass.length == 0) {
+  if (pass == null || pass.isEmpty) {
     return "please enter the password";
   }
   if (pass.length < 5) {

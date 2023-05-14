@@ -1,12 +1,6 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:expense_app/Constant/constant.dart';
-import 'package:expense_app/Controller/authentication.dart';
 import 'package:expense_app/Screens/Navigation/buttom_navigation.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
@@ -14,7 +8,7 @@ class Home extends StatelessWidget {
   const Home({super.key});
   @override
   Widget build(BuildContext context) {
-    ButtomNavigationController _navcontroller = ButtomNavigationController();
+    ButtomNavigationController navcontroller = ButtomNavigationController();
     return Scaffold(
       // body: Center(
       //     child: IconButton(
@@ -26,10 +20,13 @@ class Home extends StatelessWidget {
       //         ))),
 
       body: Stack(children: [
+        Obx(
+          () => navcontroller.pageList[navcontroller.pageIndex.value],
+        ),
         Positioned(
             bottom: 0,
             left: 0,
-            child: Container(
+            child: SizedBox(
               height: 50,
               width: Get.width,
               child: Stack(children: [
@@ -51,21 +48,21 @@ class Home extends StatelessWidget {
                       children: [
                         IconButton(
                             onPressed: () {
-                              _navcontroller.pageIndex.value = 0;
+                              navcontroller.pageIndex.value = 0;
                             },
                             icon: Icon(
                               Icons.home_filled,
-                              color: _navcontroller.pageIndex.value == 0
+                              color: navcontroller.pageIndex.value == 0
                                   ? Colors.purple
                                   : Colors.blue,
                             )),
                         IconButton(
                             onPressed: () {
-                              _navcontroller.pageIndex.value = 1;
+                              navcontroller.pageIndex.value = 1;
                             },
                             icon: Icon(
                               Icons.swap_horizontal_circle,
-                              color: _navcontroller.pageIndex.value == 1
+                              color: navcontroller.pageIndex.value == 1
                                   ? Colors.purple
                                   : Colors.blue,
                             )),
@@ -77,21 +74,21 @@ class Home extends StatelessWidget {
                         ),
                         IconButton(
                             onPressed: () {
-                              _navcontroller.pageIndex.value = 2;
+                              navcontroller.pageIndex.value = 2;
                             },
                             icon: Icon(
                               Icons.signal_cellular_alt_rounded,
-                              color: _navcontroller.pageIndex.value == 2
+                              color: navcontroller.pageIndex.value == 2
                                   ? Colors.purple
                                   : Colors.blue,
                             )),
                         IconButton(
                             onPressed: () {
-                              _navcontroller.pageIndex.value = 3;
+                              navcontroller.pageIndex.value = 3;
                             },
                             icon: Icon(
                               Icons.person,
-                              color: _navcontroller.pageIndex.value == 3
+                              color: navcontroller.pageIndex.value == 3
                                   ? Colors.purple
                                   : Colors.blue,
                             ))
@@ -99,9 +96,6 @@ class Home extends StatelessWidget {
                     ))
               ]),
             )),
-        Obx(
-          () => _navcontroller.pageList[_navcontroller.pageIndex.value],
-        )
       ]),
     );
   }
@@ -120,7 +114,7 @@ class JoyCustomPainter extends CustomPainter {
     path.lineTo(Get.width * 0.42, 0);
 
     path.arcToPoint(Offset(Get.width * 0.58, 0),
-        radius: Radius.circular(10), clockwise: false);
+        radius: const Radius.circular(10), clockwise: false);
     path.lineTo(Get.width * 0.90, 0);
     path.quadraticBezierTo(Get.width * 0.97, 0, Get.width, 20);
     path.lineTo(Get.width, Get.height);

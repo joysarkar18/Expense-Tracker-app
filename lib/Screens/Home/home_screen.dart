@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 import '../../Controller/authentication.dart';
@@ -11,8 +9,9 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
+  @override
   Widget build(BuildContext context) {
-    final _auth = FirebaseAuth.instance;
+    final auth = FirebaseAuth.instance;
     return SafeArea(
       child: Column(
         children: [
@@ -25,7 +24,7 @@ class HomeScreen extends StatelessWidget {
               StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection("user")
-                    .doc(_auth.currentUser?.email)
+                    .doc(auth.currentUser?.email)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
@@ -54,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                             IconButton(
                                 onPressed: () {},
                                 icon:
-                                    Icon(Icons.notification_important_rounded))
+                                    const Icon(Icons.notification_important_rounded))
                           ],
                         ),
                       ],

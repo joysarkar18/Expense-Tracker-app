@@ -1,4 +1,3 @@
-import 'package:expense_app/Constant/constant.dart';
 import 'package:expense_app/Screens/LogIn/login_screen.dart';
 import 'package:expense_app/Screens/LogIn/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,7 @@ class WellcomeScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Container(
           alignment: Alignment.center,
           height: MediaQuery.of(context).size.height,
@@ -31,7 +30,7 @@ class WellcomeScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              Container(
+              SizedBox(
                   height: MediaQuery.of(context).size.height / 2.5,
                   child: const Image(
                       image: AssetImage('Assets/Images/welcomelogo.png'))),
@@ -39,7 +38,7 @@ class WellcomeScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.to(() => LoginScreen());
+                    Get.to(() => const LoginScreen());
                   },
                   child: Container(
                       padding: const EdgeInsets.all(16),
@@ -54,7 +53,7 @@ class WellcomeScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.to(Get.to(() => SignUpScreen()));
+                    Get.to(Get.to(() => const SignUpScreen()));
                   },
                   child: Container(
                       padding: const EdgeInsets.all(16),

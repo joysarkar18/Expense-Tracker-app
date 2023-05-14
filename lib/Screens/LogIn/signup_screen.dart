@@ -3,8 +3,6 @@ import 'package:expense_app/Controller/main_controller.dart';
 import 'package:expense_app/Controller/signUp_controller.dart';
 import 'package:expense_app/Screens/LogIn/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 import '../../Controller/authentication.dart';
@@ -39,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios_new,
               size: 20,
             ),
@@ -50,11 +48,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           elevation: 0,
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Center(
             child: SafeArea(
               child: Center(
-                child: Container(
+                child: SizedBox(
                   height: Get.height,
                   child: Column(children: [
                     const Text(
@@ -73,12 +71,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Form(
                       key: fromKey,
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              margin: EdgeInsets.only(left: 12),
+                              margin: const EdgeInsets.only(left: 12),
                               child: const Text("Name",
                                   style: TextStyle(
                                       fontSize: 16,
@@ -88,15 +86,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               height: 4,
                             ),
                             Card(
-                              shadowColor: Color.fromARGB(120, 14, 14, 14),
+                              shadowColor: const Color.fromARGB(120, 14, 14, 14),
                               elevation: 6,
-                              shape: BeveledRectangleBorder(
+                              shape: const BeveledRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(13))),
                               child: TextFormField(
                                 controller: signupController.nameController,
                                 validator: (value) => validateName(value),
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: "Enter your Name",
                                   prefixIcon: Icon(
                                     Icons.person_2_rounded,
@@ -112,23 +110,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
 
                             //password
-                            SizedBox(
+                            const SizedBox(
                               height: 24,
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 12),
-                              child: Text("Email",
+                              margin: const EdgeInsets.only(left: 12),
+                              child: const Text("Email",
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400)),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 4,
                             ),
                             Card(
-                              shadowColor: Color.fromARGB(120, 14, 14, 14),
+                              shadowColor: const Color.fromARGB(120, 14, 14, 14),
                               elevation: 6,
-                              shape: BeveledRectangleBorder(
+                              shape: const BeveledRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(13))),
                               child: TextFormField(
@@ -152,23 +150,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 24,
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 12),
-                              child: Text("Password",
+                              margin: const EdgeInsets.only(left: 12),
+                              child: const Text("Password",
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400)),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 4,
                             ),
                             Card(
-                              shadowColor: Color.fromARGB(120, 14, 14, 14),
+                              shadowColor: const Color.fromARGB(120, 14, 14, 14),
                               elevation: 6,
-                              shape: BeveledRectangleBorder(
+                              shape: const BeveledRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(13))),
                               child: TextFormField(
@@ -177,7 +175,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 obscureText: _isVisible ? false : true,
                                 decoration: InputDecoration(
                                   hintText: "Enter your Password",
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.lock,
                                     color: Colors.black,
                                   ),
@@ -188,7 +186,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         ? Icons.visibility
                                         : Icons.visibility_off),
                                   ),
-                                  enabledBorder: OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(13)),
                                       borderSide: BorderSide(
@@ -201,16 +199,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Obx(
                       () => Text(
                         Authentication.instance.errorMsgup!.value,
-                        style: TextStyle(color: Colors.red),
+                        style: const TextStyle(color: Colors.red),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 55,
                     ),
                     SizedBox(
@@ -237,12 +235,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Have Account?"),
+                        const Text("Have Account?"),
                         TextButton(
                             onPressed: () {
-                              Get.off(() => LoginScreen());
+                              Get.off(() => const LoginScreen());
                             },
-                            child: Text("Sign In"))
+                            child: const Text("Sign In"))
                       ],
                     ),
                   ]),
