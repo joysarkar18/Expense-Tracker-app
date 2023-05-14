@@ -44,6 +44,8 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   lottie: ^2.3.2
   cloud_firestore: ^4.5.3
+  responsive_sizer: ^3.1.1
+  # google_fonts: ^4.0.4
 
 
 dev_dependencies:

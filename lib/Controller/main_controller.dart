@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainController extends GetxController {
   static MainController get instance => Get.find();
+  TextEditingController phone = TextEditingController();
 
   final _db = FirebaseFirestore.instance;
   var firebaseUser = FirebaseAuth.instance.currentUser;

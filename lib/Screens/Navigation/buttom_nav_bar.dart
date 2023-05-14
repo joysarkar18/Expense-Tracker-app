@@ -1,5 +1,6 @@
 import 'package:expense_app/Constant/constant.dart';
 import 'package:expense_app/Screens/Navigation/buttom_navigation.dart';
+import 'package:expense_app/widgets/addTransaction.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -10,6 +11,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     ButtomNavigationController navcontroller = ButtomNavigationController();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       // body: Center(
       //     child: IconButton(
       //         onPressed: () {
@@ -34,15 +36,6 @@ class Home extends StatelessWidget {
                   size: Size(Get.width, 50),
                   painter: JoyCustomPainter(),
                 ),
-                Center(
-                  heightFactor: 0.05,
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.cyan,
-                    elevation: 2,
-                    onPressed: () {},
-                    child: Lottie.asset("Assets/Lottie/127657-add-button.json"),
-                  ),
-                ),
                 Obx(() => Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -66,11 +59,20 @@ class Home extends StatelessWidget {
                                   ? Colors.purple
                                   : Colors.blue,
                             )),
-                        const SizedBox(
-                          width: 14,
-                        ),
-                        const SizedBox(
-                          width: 14,
+                        InkWell(
+                          onTap: () {
+                            print("hiiiiiiiiii");
+                            showDialog(
+                              context: context,
+                              builder: (builder) {
+                                return const AddTransactionAlert();
+                              },
+                            );
+                          },
+                          child: Container(
+                            height: 100,
+                            width: 100,
+                          ),
                         ),
                         IconButton(
                             onPressed: () {
@@ -93,7 +95,23 @@ class Home extends StatelessWidget {
                                   : Colors.blue,
                             ))
                       ],
-                    ))
+                    )),
+                Center(
+                  heightFactor: 0.05,
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.cyan,
+                    onPressed: () {
+                      print("hiiiiiiiiii");
+                      showDialog(
+                        context: context,
+                        builder: (builder) {
+                          return const AddTransactionAlert();
+                        },
+                      );
+                    },
+                    child: Lottie.asset("Assets/Lottie/127657-add-button.json"),
+                  ),
+                ),
               ]),
             )),
       ]),

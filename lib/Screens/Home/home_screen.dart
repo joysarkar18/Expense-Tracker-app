@@ -52,8 +52,8 @@ class HomeScreen extends StatelessWidget {
                             ),
                             IconButton(
                                 onPressed: () {},
-                                icon:
-                                    const Icon(Icons.notification_important_rounded))
+                                icon: const Icon(
+                                    Icons.notification_important_rounded))
                           ],
                         ),
                       ],
