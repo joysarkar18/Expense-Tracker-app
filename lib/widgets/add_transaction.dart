@@ -33,7 +33,7 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                       fontSize: 20,
                       color: Colors.black,
                     )),
-                Container(
+                SizedBox(
                   width: Get.width,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -138,8 +138,8 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                       height: 5,
                     ),
                     Container(
-                      height: 50,
-                      width: 300,
+                      height: 60,
+                      width: Get.width * 0.9,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
                         borderRadius:
@@ -152,6 +152,8 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                         children: [
                           Expanded(
                             child: TextFormField(
+                              style: const TextStyle(
+                                  fontSize: 20.0, fontWeight: FontWeight.bold),
                               keyboardType: TextInputType.number,
                               cursorColor: Colors.red,
                               decoration: const InputDecoration(
@@ -161,14 +163,18 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 20),
-                          const Center(
-                            child: Text(
-                              "RS",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18,
-                                color: Colors.black,
+                          // const SizedBox(width: 20),
+                          Container(
+                            height: 60,
+                            padding: const EdgeInsets.symmetric(vertical: 2),
+                            child: const Center(
+                              child: Text(
+                                "₹",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 28,
+                                  color: Color.fromARGB(255, 248, 56, 255),
+                                ),
                               ),
                             ),
                           ),
@@ -255,7 +261,7 @@ Widget _compilationListTile() {
           iconColor: Colors.black,
           collapsedIconColor: Colors.black,
           collapsedTextColor: Colors.black,
-          title: Text(
+          title: const Text(
             "",
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -280,8 +286,8 @@ Widget _compilationListTile() {
                                 color: Colors.blueAccent,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
-                            margin: EdgeInsets.symmetric(vertical: 5),
-                            padding: EdgeInsets.all(12),
+                            margin: const EdgeInsets.symmetric(vertical: 5),
+                            padding: const EdgeInsets.all(12),
                             child: Text(complications[index])),
                       )),
             ),

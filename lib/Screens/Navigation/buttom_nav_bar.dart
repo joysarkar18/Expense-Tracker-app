@@ -1,6 +1,6 @@
 import 'package:expense_app/Constant/constant.dart';
 import 'package:expense_app/Screens/Navigation/buttom_navigation.dart';
-import 'package:expense_app/widgets/addTransaction.dart';
+import 'package:expense_app/widgets/add_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -61,7 +61,6 @@ class Home extends StatelessWidget {
                             )),
                         InkWell(
                           onTap: () {
-                            print("hiiiiiiiiii");
                             showDialog(
                               context: context,
                               builder: (builder) {
@@ -69,7 +68,7 @@ class Home extends StatelessWidget {
                               },
                             );
                           },
-                          child: Container(
+                          child: const SizedBox(
                             height: 100,
                             width: 100,
                           ),
@@ -101,7 +100,6 @@ class Home extends StatelessWidget {
                   child: FloatingActionButton(
                     backgroundColor: Colors.cyan,
                     onPressed: () {
-                      print("hiiiiiiiiii");
                       showDialog(
                         context: context,
                         builder: (builder) {

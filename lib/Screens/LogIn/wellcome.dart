@@ -38,7 +38,8 @@ class WellcomeScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.to(() => const LoginScreen());
+                    Get.to(() => const LoginScreen(),
+                        transition: Transition.cupertinoDialog);
                   },
                   child: Container(
                       padding: const EdgeInsets.all(16),
@@ -53,7 +54,8 @@ class WellcomeScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.to(Get.to(() => const SignUpScreen()));
+                    Get.to(() => const SignUpScreen(),
+                        transition: Transition.cupertinoDialog);
                   },
                   child: Container(
                       padding: const EdgeInsets.all(16),
