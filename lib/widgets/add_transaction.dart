@@ -1,3 +1,4 @@
+import 'package:expense_app/Controller/TransactionController/transaction_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +10,8 @@ class AddTransactionAlert extends StatefulWidget {
 }
 
 class _AddTransactionAlertState extends State<AddTransactionAlert> {
+  TransactionController transactionController =
+      Get.put(TransactionController());
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -21,7 +24,7 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
           child: Container(
             margin: EdgeInsets.zero,
             padding: const EdgeInsets.all(20),
-            height: 440,
+            height: Get.height * 0.7,
             width: Get.width,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -29,101 +32,113 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
               children: [
                 const Text("Enter Transaction Details",
                     style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 21,
                       color: Colors.black,
                     )),
-                SizedBox(
-                  width: Get.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          // mainController.doctorOrMother.value = 0;
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 20,
-                              width: 20,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.purple,
-                                  width: 1,
+                const SizedBox(
+                  height: 10,
+                ),
+                Obx(
+                  () => SizedBox(
+                    width: Get.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            transactionController.paidOrRecived.value = 0;
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 20,
+                                width: 20,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(3),
+                                child:
+                                    transactionController.paidOrRecived.value ==
+                                            0
+                                        ? Container(
+                                            height: 18,
+                                            width: 18,
+                                            decoration: const BoxDecoration(
+                                              color: Colors.red,
+                                              shape: BoxShape.circle,
+                                            ),
+                                          )
+                                        : Container(),
+                              ),
+                              const SizedBox(width: 10),
+                              const Text(
+                                "paid",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              padding: const EdgeInsets.all(5),
-                              child: 0 == 0
-                                  ? Container(
-                                      height: 10,
-                                      width: 10,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.purple,
-                                        shape: BoxShape.circle,
-                                      ),
-                                    )
-                                  : Container(),
-                            ),
-                            const SizedBox(width: 10),
-                            const Text(
-                              "paid",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          // mainController.doctorOrMother.value = 1;
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 20,
-                              width: 20,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.purple,
-                                  width: 1,
+                        InkWell(
+                          onTap: () {
+                            transactionController.paidOrRecived.value = 1;
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 20,
+                                width: 20,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.green,
+                                    width: 1,
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(3),
+                                child:
+                                    transactionController.paidOrRecived.value ==
+                                            1
+                                        ? Container(
+                                            height: 18,
+                                            width: 18,
+                                            decoration: const BoxDecoration(
+                                              color: Colors.green,
+                                              shape: BoxShape.circle,
+                                            ),
+                                          )
+                                        : Container(),
+                              ),
+                              const SizedBox(width: 10),
+                              const Text(
+                                "Recived",
+                                style: TextStyle(
+                                  color: Colors.green,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              padding: const EdgeInsets.all(5),
-                              child: 1 == 1
-                                  ? Container(
-                                      height: 10,
-                                      width: 10,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.purple,
-                                        shape: BoxShape.circle,
-                                      ),
-                                    )
-                                  : Container(),
-                            ),
-                            const SizedBox(width: 10),
-                            const Text(
-                              "Recived",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +155,7 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                     Container(
                       height: 60,
                       width: Get.width * 0.9,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.only(right: 20, left: 4),
                       decoration: BoxDecoration(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(15)),
@@ -151,18 +166,24 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                       child: Row(
                         children: [
                           Expanded(
-                            child: TextFormField(
+                              child: Obx(
+                            () => TextFormField(
                               style: const TextStyle(
                                   fontSize: 20.0, fontWeight: FontWeight.bold),
                               keyboardType: TextInputType.number,
                               cursorColor: Colors.red,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
+                                hintText:
+                                    transactionController.paidOrRecived.value ==
+                                            0
+                                        ? "Amount Paid?"
+                                        : "Amount Recived!",
                                 fillColor: Colors.white,
                                 focusedBorder: InputBorder.none,
                                 border: InputBorder.none,
                               ),
                             ),
-                          ),
+                          )),
                           // const SizedBox(width: 20),
                           Container(
                             height: 60,
@@ -183,6 +204,90 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(" Transaction with",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                          color: Colors.black,
+                        )),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      height: 60,
+                      width: Get.width * 0.9,
+                      padding: const EdgeInsets.only(right: 20, left: 4),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(15)),
+                        border: Border.all(
+                          color: Colors.red,
+                        ),
+                      ),
+                      child: const Row(
+                        children: [
+                          Expanded(
+                              child: TextField(
+                            decoration: InputDecoration(
+                              hintText: "Enter Name",
+                              border: InputBorder.none,
+                              fillColor: Colors.white,
+                            ),
+                          )),
+                          // const SizedBox(width: 20),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(" Add some notes",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                          color: Colors.black,
+                        )),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      height: 60,
+                      width: Get.width * 0.9,
+                      padding: const EdgeInsets.only(right: 20, left: 4),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(15)),
+                        border: Border.all(
+                          color: Colors.red,
+                        ),
+                      ),
+                      child: const Row(
+                        children: [
+                          Expanded(
+                              child: TextField(
+                            decoration: InputDecoration(
+                              hintText: "write here",
+                              border: InputBorder.none,
+                              fillColor: Colors.white,
+                            ),
+                          )),
+                          // const SizedBox(width: 20),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -195,26 +300,35 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                     const SizedBox(
                       height: 5,
                     ),
-                    _compilationListTile(),
+                    _reasonListTile(),
                   ],
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 InkWell(
                   onTap: () {},
                   child: Container(
-                    width: 100,
+                    width: 130,
                     height: 50,
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 40, 236, 5),
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 255, 11, 11),
+                          Color.fromARGB(255, 255, 148, 7)
+                        ], // Replace with your desired gradient colors
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     child: Center(
                       child: Text(
-                        "Submit".tr,
+                        "SUBMIT".tr,
                         style: const TextStyle(
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w900,
                           fontSize: 18,
-                          decoration: TextDecoration.underline,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -227,90 +341,60 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
   }
 }
 
-Widget _compilationListTile() {
-  List<String> complications = <String>[
-    "High Blood Pressure",
-    "Gestational Diabetes",
-    "Preeclampsia",
-    "Preterm labor",
-    "Loss of pregnancy, or Miscarriage",
-    "Diabetes",
-    "Cancer",
-    "Infections",
-    "Sexually Transmitted Diseases, including HIV",
-    "Kidney Problems",
-    "Epilepsy",
-    "Anemia",
-    "Pregnant at 35 or Older",
-    "Pregnant at Young Age",
-    "Smoking Cigarettes",
-    "Using Illegal Drugs",
-    "Drinking Alcohol",
-    "Carrying Multiples, such as Twins or Triplets"
+Widget _reasonListTile() {
+  TransactionController transactionController =
+      Get.put(TransactionController());
+  List<String> reasons = <String>[
+    "None",
+    "Food",
+    "Traveling",
+    "Rent",
+    "Recharge",
+    "Electricity",
+    "Shopping",
+    "Grocery",
+    "Party",
   ];
 
-  return Stack(
-    children: [
-      Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          color: Colors.white,
-        ),
-        child: ExpansionTile(
-          textColor: Colors.black,
-          iconColor: Colors.black,
-          collapsedIconColor: Colors.black,
-          collapsedTextColor: Colors.black,
-          title: const Text(
-            "",
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 14,
-            ),
+  return Container(
+    height: 50,
+    width: Get.width,
+    child: RotatedBox(
+        quarterTurns: -1,
+        child: ListWheelScrollView.useDelegate(
+          onSelectedItemChanged: (value) {
+            transactionController.selectedReason.value = value;
+          },
+          physics: const FixedExtentScrollPhysics(),
+          controller: FixedExtentScrollController(initialItem: 1),
+          itemExtent: 100,
+          diameterRatio: 1.7,
+          childDelegate: ListWheelChildBuilderDelegate(
+            childCount: reasons.length,
+            builder: (context, index) {
+              return RotatedBox(
+                  quarterTurns: 1,
+                  child: Obx(
+                    () => Container(
+                      height: 35,
+                      decoration: BoxDecoration(
+                          color: transactionController.selectedReason.value ==
+                                  index
+                              ? const Color.fromARGB(255, 255, 216, 100)
+                              : const Color.fromARGB(255, 96, 233, 101),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10))),
+                      child: Center(
+                        child: Text(
+                          reasons[index].toString(),
+                          style: const TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                  ));
+            },
           ),
-          children: [
-            Container(
-              height: 250,
-              width: 200,
-
-              // color: Colors.red,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 5,
-              ),
-              child: ListView.builder(
-                  itemCount: complications.length,
-                  itemBuilder: (context, index) => InkWell(
-                        onTap: () {},
-                        child: Container(
-                            decoration: const BoxDecoration(
-                                color: Colors.blueAccent,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                            margin: const EdgeInsets.symmetric(vertical: 5),
-                            padding: const EdgeInsets.all(12),
-                            child: Text(complications[index])),
-                      )),
-            ),
-          ],
-        ),
-      ),
-      Container(
-        height: 55,
-        width: 200,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          color: Colors.white,
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: TextFormField(
-          cursorColor: Colors.black,
-          //controller: mainController.motherDoctorHospitalController,
-          decoration: const InputDecoration(
-            hintText: "write or select",
-            border: InputBorder.none,
-          ),
-        ),
-      ),
-    ],
+        )),
   );
 }

@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 
 class TransactionController extends GetxController {
   var firebaseUser = FirebaseAuth.instance.currentUser;
+  RxInt paidOrRecived = 0.obs;
+  RxInt selectedReason = 1.obs;
 
   void addTransaction(Transaction t) async {
-    DocumentSnapshot<Map<String, dynamic>> db = await FirebaseFirestore
-        .instance
+    DocumentSnapshot<Map<String, dynamic>> db = await FirebaseFirestore.instance
         .collection("users")
         .doc(firebaseUser?.email.toString().trim())
         .get();

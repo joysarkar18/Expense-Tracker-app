@@ -1,6 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:expense_app/Controller/main_controller.dart';
-import 'package:expense_app/Controller/signUp_controller.dart';
+import 'package:expense_app/Controller/signup_controller.dart';
 import 'package:expense_app/Screens/LogIn/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -86,7 +86,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               height: 4,
                             ),
                             Card(
-                              shadowColor: const Color.fromARGB(120, 14, 14, 14),
+                              shadowColor:
+                                  const Color.fromARGB(120, 14, 14, 14),
                               elevation: 6,
                               shape: const BeveledRectangleBorder(
                                   borderRadius:
@@ -124,7 +125,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               height: 4,
                             ),
                             Card(
-                              shadowColor: const Color.fromARGB(120, 14, 14, 14),
+                              shadowColor:
+                                  const Color.fromARGB(120, 14, 14, 14),
                               elevation: 6,
                               shape: const BeveledRectangleBorder(
                                   borderRadius:
@@ -164,7 +166,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               height: 4,
                             ),
                             Card(
-                              shadowColor: const Color.fromARGB(120, 14, 14, 14),
+                              shadowColor:
+                                  const Color.fromARGB(120, 14, 14, 14),
                               elevation: 6,
                               shape: const BeveledRectangleBorder(
                                   borderRadius:

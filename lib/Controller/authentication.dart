@@ -22,8 +22,6 @@ class Authentication extends GetxController {
     firebaseUser = Rx<User?>(_auth.currentUser);
     firebaseUser.bindStream(_auth.userChanges());
     ever(firebaseUser, _setInitScreen);
-
-    print(_auth.currentUser?.email);
   }
 
   _setInitScreen(User? user) {

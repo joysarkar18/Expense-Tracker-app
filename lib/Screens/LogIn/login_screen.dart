@@ -4,7 +4,7 @@ import 'package:expense_app/Screens/LogIn/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../Controller/signUp_controller.dart';
+import '../../Controller/signup_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -86,7 +86,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 4,
                               ),
                               Card(
-                                shadowColor: const Color.fromARGB(120, 14, 14, 14),
+                                shadowColor:
+                                    const Color.fromARGB(120, 14, 14, 14),
                                 elevation: 6,
                                 shape: const BeveledRectangleBorder(
                                     borderRadius:
@@ -129,7 +130,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 4,
                               ),
                               Card(
-                                shadowColor: const Color.fromARGB(120, 14, 14, 14),
+                                shadowColor:
+                                    const Color.fromARGB(120, 14, 14, 14),
                                 elevation: 6,
                                 shape: const BeveledRectangleBorder(
                                     borderRadius:

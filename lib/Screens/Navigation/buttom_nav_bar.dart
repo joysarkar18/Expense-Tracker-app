@@ -120,7 +120,6 @@ class Home extends StatelessWidget {
 class JoyCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    // TODO: implement paint
     Paint paint = Paint()
       ..color = myBlue
       ..style = PaintingStyle.fill;
