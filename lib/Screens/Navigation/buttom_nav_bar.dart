@@ -97,17 +97,22 @@ class Home extends StatelessWidget {
                     )),
                 Center(
                   heightFactor: 0.05,
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.cyan,
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (builder) {
-                          return const AddTransactionAlert();
-                        },
-                      );
-                    },
-                    child: Lottie.asset("Assets/Lottie/127657-add-button.json"),
+                  child: SizedBox(
+                    height: Get.width * 0.13,
+                    width: Get.width * 0.13,
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.cyan,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (builder) {
+                            return const AddTransactionAlert();
+                          },
+                        );
+                      },
+                      child:
+                          Lottie.asset("Assets/Lottie/127657-add-button.json"),
+                    ),
                   ),
                 ),
               ]),

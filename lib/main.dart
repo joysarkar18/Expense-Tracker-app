@@ -2,6 +2,7 @@ import 'package:expense_app/Controller/authentication.dart';
 import 'package:expense_app/Screens/Splash/splash_home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'Themes/theme_data.dart';
@@ -21,12 +22,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: Themes.light,
-      darkTheme: Themes.dark,
-      home: const SplashScreen(),
+    return ScreenUtilInit(
+      designSize: Size(Get.width, Get.height),
+      builder: (context, child) => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: Themes.light,
+        darkTheme: Themes.dark,
+        home: const SplashScreen(),
+      ),
     );
   }
 }
