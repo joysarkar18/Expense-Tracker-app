@@ -1,12 +1,9 @@
-import 'dart:math';
-
-import 'package:chart_sparkline/chart_sparkline.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense_app/Screens/Home/chart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:mrx_charts/mrx_charts.dart';
 
 import '../../Controller/authentication.dart';
 
@@ -16,7 +13,6 @@ class HomeScreen extends StatelessWidget {
   @override
   @override
   Widget build(BuildContext context) {
-    var data = [0.0, 100.0, 200.0, 155.0, 445.0, 450.0, 1000.0];
     final auth = FirebaseAuth.instance;
     return SafeArea(
       child: Container(
@@ -78,6 +74,29 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 15,
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 30, bottom: 10, left: 10),
+              decoration: const BoxDecoration(
+                boxShadow: [BoxShadow(blurRadius: 4)],
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 171, 36, 197),
+                    Color.fromARGB(255, 238, 119, 244)
+                  ], // Replace with your desired gradient colors
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
+                ),
+              ),
+              height: Get.height * 0.28,
+              width: Get.width,
+              child: const LinexChart(isShowingMainData: true),
+            ),
             Center(
               child: IconButton(
                 onPressed: () {
@@ -86,33 +105,6 @@ class HomeScreen extends StatelessWidget {
                 icon: const Icon(
                   Icons.cancel_outlined,
                 ),
-              ),
-            ),
-            Container(
-              color: Colors.purpleAccent,
-              width: Get.width,
-              height: 200.0,
-              child: Chart(
-                layers: [
-                  ChartLineLayer(
-                    items: [
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                      ChartLineDataItem(value: 200, x: 28),
-                    ],
-                    settings: const ChartLineSettings(
-                        color: Colors.blue, thickness: 20),
-                  )
-                ],
               ),
             ),
           ],
