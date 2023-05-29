@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Hello",
+                            " Hello",
                             style: TextStyle(
                                 fontFamily: "Roboto",
                                 fontSize: 30.sp,
@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  data!["name"].toString(),
+                                  " ${data!["name"]}",
                                   style: const TextStyle(
                                       fontFamily: "Roboto",
                                       fontSize: 30,
@@ -78,25 +78,62 @@ class HomeScreen extends StatelessWidget {
               height: 15,
             ),
             Container(
-              padding: EdgeInsets.only(top: 30, bottom: 10, left: 10),
-              decoration: const BoxDecoration(
-                boxShadow: [BoxShadow(blurRadius: 4)],
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(255, 171, 36, 197),
-                    Color.fromARGB(255, 238, 119, 244)
-                  ], // Replace with your desired gradient colors
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                padding: const EdgeInsets.only(
+                    top: 10, bottom: 10, left: 10, right: 10),
+                decoration: const BoxDecoration(
+                  // boxShadow: [BoxShadow(blurRadius: 4)],
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 188, 60, 214),
+                      Color.fromARGB(255, 221, 177, 223)
+                    ], // Replace with your desired gradient colors
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
                 ),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15),
-                ),
-              ),
-              height: Get.height * 0.28,
-              width: Get.width,
-              child: const LinexChart(isShowingMainData: true),
-            ),
+                height: Get.height * 0.28,
+                width: Get.width,
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "Last Week",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          "Total Transaction - ₹5000",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    LinexChart(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Sun"),
+                        Text("Mon"),
+                        Text("Tue"),
+                        Text("Wed"),
+                        Text("Thu"),
+                        Text("Fri"),
+                        Text("Sat"),
+                      ],
+                    )
+                  ],
+                )),
             Center(
               child: IconButton(
                 onPressed: () {
