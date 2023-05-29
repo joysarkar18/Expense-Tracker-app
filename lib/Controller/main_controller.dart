@@ -12,5 +12,6 @@ class MainController extends GetxController {
 
   createUserData(String name, String email) async {
     await _db.collection("user").doc(email).set({"name": name, "email": email});
+    await _db.collection("transactions").doc(email).set({"trans": []});
   }
 }

@@ -319,7 +319,10 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                       height: 10,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        print("hiiiiiiiiiiiiii");
+                        transactionController.addTransaction(12.9);
+                      },
                       child: Container(
                         width: 130,
                         height: 50,

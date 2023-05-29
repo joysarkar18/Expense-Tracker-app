@@ -7,15 +7,23 @@ class TransactionController extends GetxController {
   RxInt paidOrRecived = 0.obs;
   RxInt selectedReason = 1.obs;
 
-  void addTransaction(Transaction t) async {
+  void addTransaction(
+    double amount,
+  ) async {
     DocumentSnapshot<Map<String, dynamic>> db = await FirebaseFirestore.instance
-        .collection("users")
+        .collection("transactions")
         .doc(firebaseUser?.email.toString().trim())
         .get();
 
     List transactionsList = [];
-    if (db.data()!["transactions"] != null) {
-      transactionsList = db.data()!["transactions"];
-    }
+    print("hhhhhhhhhhhhhhhhhhhhhh");
+
+    transactionsList = db.data()!["trans"];
+    transactionsList.add({"ammount": amount});
+    await FirebaseFirestore.instance
+        .collection("transactions")
+        .doc(firebaseUser?.email.toString().trim())
+        .update({"trans": transactionsList});
+    print("hiiokojiojd");
   }
 }
