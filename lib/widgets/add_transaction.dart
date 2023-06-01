@@ -173,6 +173,8 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                               Expanded(
                                   child: Obx(
                                 () => TextFormField(
+                                  controller:
+                                      transactionController.transactionAmount,
                                   style: const TextStyle(
                                       fontSize: 20.0,
                                       fontWeight: FontWeight.bold),
@@ -238,11 +240,13 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                               color: Colors.red,
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             children: [
                               Expanded(
                                   child: TextField(
-                                decoration: InputDecoration(
+                                controller:
+                                    transactionController.transactionWith,
+                                decoration: const InputDecoration(
                                   hintText: "Enter Name",
                                   border: InputBorder.none,
                                   fillColor: Colors.white,
@@ -281,11 +285,13 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                               color: Colors.red,
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             children: [
                               Expanded(
                                   child: TextField(
-                                decoration: InputDecoration(
+                                controller:
+                                    transactionController.transactionNotes,
+                                decoration: const InputDecoration(
                                   hintText: "write here",
                                   border: InputBorder.none,
                                   fillColor: Colors.white,
@@ -303,7 +309,7 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(" Select Reasone",
+                        const Text(" Select Reason",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 16,
@@ -320,8 +326,20 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                     ),
                     InkWell(
                       onTap: () {
-                        print("hiiiiiiiiiiiiii");
-                        transactionController.addTransaction(12.9);
+                        transactionController.addTransaction(
+                          amount: double.parse(
+                              transactionController.transactionAmount.text),
+                          paidOrRec: transactionController.paidOrRecived.value,
+                          notes: transactionController.transactionNotes.text,
+                          reason: transactionController.transactionReason.value,
+                          toWhom: transactionController.transactionWith.text,
+                        );
+                        transactionController.transactionAmount.text = "";
+                        transactionController.paidOrRecived.value = 0;
+                        transactionController.transactionNotes.text = "";
+                        transactionController.transactionReason.value = "Food";
+                        transactionController.transactionWith.text = "";
+                        Get.back();
                       },
                       child: Container(
                         width: 130,
@@ -381,6 +399,7 @@ Widget _reasonListTile() {
         child: ListWheelScrollView.useDelegate(
           onSelectedItemChanged: (value) {
             transactionController.selectedReason.value = value;
+            transactionController.transactionReason.value = reasons[value];
           },
           physics: const FixedExtentScrollPhysics(),
           controller: FixedExtentScrollController(initialItem: 1),
