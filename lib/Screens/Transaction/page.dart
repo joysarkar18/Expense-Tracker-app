@@ -9,16 +9,16 @@ class Page1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          height: 38,
-        ),
-        Container(
-            margin: const EdgeInsets.only(left: 5),
-            child: const Text("Transactions List",
-                style: TextStyle(fontSize: 24))),
-        const SizedBox(
-          height: 15,
-        ),
+        // const SizedBox(
+        //   height: 38,
+        // ),
+        // Container(
+        //     margin: const EdgeInsets.only(left: 5),
+        //     child: const Text("Transactions List",
+        //         style: TextStyle(fontSize: 24))),
+        // const SizedBox(
+        //   height: 15,
+        // ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Container(
               padding: const EdgeInsets.all(5),
