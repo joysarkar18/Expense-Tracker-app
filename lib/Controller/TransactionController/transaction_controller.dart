@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class TransactionController extends GetxController {
+  // add transaction part code is here
   var firebaseUser = FirebaseAuth.instance.currentUser;
   RxInt paidOrRecived = 0.obs;
   RxInt selectedReason = 1.obs;
@@ -38,5 +39,17 @@ class TransactionController extends GetxController {
         .collection("transactions")
         .doc(firebaseUser?.email.toString().trim())
         .update({"trans": transactionsList});
+  }
+
+  RxInt allPaidRecived = 0.obs;
+  var transactionList = [].obs;
+
+  void getTransactionList() async {
+    DocumentSnapshot<Map<String, dynamic>> db = await FirebaseFirestore.instance
+        .collection("transactions")
+        .doc(firebaseUser?.email.toString().trim())
+        .get();
+
+    transactionList.value = db.data()!["trans"];
   }
 }
