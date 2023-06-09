@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense_app/Controller/ChartController/chart_controller.dart';
 import 'package:expense_app/Screens/Home/chart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,9 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  @override
   Widget build(BuildContext context) {
+    ChartController chartController = Get.put(ChartController());
+    chartController.getTransactionList();
     final auth = FirebaseAuth.instance;
     return SafeArea(
       child: Container(
@@ -96,40 +98,40 @@ class HomeScreen extends StatelessWidget {
                 ),
                 height: Get.height * 0.28,
                 width: Get.width,
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       children: [
-                        Text(
-                          "Last Week",
+                        const Text(
+                          "Current Week",
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 4,
                         ),
                         Text(
-                          "Total Transaction - ₹5000",
-                          style: TextStyle(
+                          "Total Transaction - ₹${chartController.totalAmountThisWeek}",
+                          style: const TextStyle(
                             fontSize: 16,
                           ),
                         ),
                       ],
                     ),
                     LinexChart(),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Sun"),
                         Text("Mon"),
                         Text("Tue"),
                         Text("Wed"),
                         Text("Thu"),
                         Text("Fri"),
                         Text("Sat"),
+                        Text("Sun"),
                       ],
                     )
                   ],

@@ -1,5 +1,7 @@
 import 'package:chart_sparkline/chart_sparkline.dart';
+import 'package:expense_app/Controller/ChartController/chart_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LinexChart extends StatefulWidget {
   const LinexChart({super.key});
@@ -9,11 +11,12 @@ class LinexChart extends StatefulWidget {
 }
 
 class _LinexChartState extends State<LinexChart> {
-  var data = [100.0, 300.0, 345.0, 123.0, 457.0, 385.0, 367.0];
+  ChartController chartController = Get.put(ChartController());
+
   @override
   Widget build(BuildContext context) {
     return Sparkline(
-      data: data,
+      data: chartController.data,
       lineColor: const Color.fromARGB(255, 255, 255, 255),
       lineWidth: 4,
       useCubicSmoothing: true,
