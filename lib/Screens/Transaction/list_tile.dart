@@ -1,26 +1,56 @@
+import 'package:expense_app/Controller/TransactionController/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TransactionTile extends StatelessWidget {
-  const TransactionTile({super.key});
+  double amount;
+  String toWhom;
+  int paidOrRecived;
+  DateTime dateTime;
+  TransactionTile(
+      {super.key,
+      required this.amount,
+      required this.toWhom,
+      required this.paidOrRecived,
+      required this.dateTime});
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    DateTime date = dateTime;
+    String formattedDate = DateFormat.yMMMEd().format(date);
+    print(formattedDate);
+    return Card(
       child: ListTile(
-        leading: Icon(
-          Icons.arrow_upward_rounded,
-          color: Colors.red,
-        ),
+        leading: paidOrRecived == 0
+            ? const Icon(
+                Icons.arrow_upward_rounded,
+                color: Colors.red,
+              )
+            : const Icon(
+                Icons.arrow_downward_rounded,
+                color: Colors.green,
+              ),
         title: Text(
-          "Today 2:30",
-          style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black),
+          dateTime.day == DateTime.now().day
+              ? "Today"
+              : dateTime.day == DateTime.now().day - 1
+                  ? "Tommrow"
+                  : formattedDate,
+          style: const TextStyle(
+              fontWeight: FontWeight.w300, color: Colors.black, fontSize: 14),
         ),
-        subtitle: Text("Ritesh Shandilya",
-            style: TextStyle(
+        subtitle: Text(toWhom,
+            style: const TextStyle(
                 fontSize: 18,
                 color: Colors.black,
                 fontWeight: FontWeight.w700)),
-        trailing: Text("456rs"),
+        trailing: Text(
+          "₹ $amount",
+          style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: paidOrRecived == 1 ? Colors.green : Colors.red),
+        ),
       ),
     );
   }

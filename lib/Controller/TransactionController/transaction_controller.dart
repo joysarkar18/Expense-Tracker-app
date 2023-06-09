@@ -28,8 +28,9 @@ class TransactionController extends GetxController {
     List transactionsList;
 
     transactionsList = db.data()!["trans"];
-    transactionsList.add({
-      "ammount": amount,
+    transactionsList.insert(0, {
+      "dateTime": DateTime.now(),
+      "ammount": amount.toDouble(),
       "paidOrRecived": paidOrRec,
       "toWhom": toWhom,
       "notes": notes,

@@ -26,12 +26,56 @@ class _TransListState extends State<TransList> {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return const Center(
-            child: Text("hiii"),
-          );
+          List transactionList = snapshot.data?.data()!["trans"];
+
+          if (transactionList.isEmpty) {
+            return const Center(
+              child: Text("Don't have any Transactions yet"),
+            );
+          } else {
+            return ListView.builder(
+              itemCount: transactionList.length,
+              itemBuilder: (context, index) {
+                if (transactionController.allPaidRecived.value == 0) {
+                  return TransactionTile(
+                    amount: double.parse(
+                        transactionList[index]["ammount"].toString()),
+                    toWhom: transactionList[index]["toWhom"],
+                    paidOrRecived: transactionList[index]["paidOrRecived"],
+                    dateTime: (transactionList[index]["dateTime"] as Timestamp)
+                        .toDate(),
+                  );
+                } else if (transactionController.allPaidRecived.value == 1) {
+                  if (transactionList[index]["paidOrRecived"] == 0) {
+                    return TransactionTile(
+                      amount: double.parse(
+                          transactionList[index]["ammount"].toString()),
+                      toWhom: transactionList[index]["toWhom"],
+                      paidOrRecived: transactionList[index]["paidOrRecived"],
+                      dateTime:
+                          (transactionList[index]["dateTime"] as Timestamp)
+                              .toDate(),
+                    );
+                  }
+                } else {
+                  if (transactionList[index]["paidOrRecived"] == 1) {
+                    return TransactionTile(
+                      amount: double.parse(
+                          transactionList[index]["ammount"].toString()),
+                      toWhom: transactionList[index]["toWhom"],
+                      paidOrRecived: transactionList[index]["paidOrRecived"],
+                      dateTime:
+                          (transactionList[index]["dateTime"] as Timestamp)
+                              .toDate(),
+                    );
+                  }
+                }
+              },
+            );
+          }
         } else {
           return const Center(
-            child: Text("hiii no data"),
+            child: CircularProgressIndicator(),
           );
         }
       },
