@@ -8,9 +8,14 @@ import 'package:get/get.dart';
 
 import '../../Controller/authentication.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     ChartController chartController = Get.put(ChartController());
@@ -80,62 +85,89 @@ class HomeScreen extends StatelessWidget {
               height: 15,
             ),
             Container(
-                padding: const EdgeInsets.only(
-                    top: 10, bottom: 10, left: 10, right: 10),
-                decoration: const BoxDecoration(
-                  // boxShadow: [BoxShadow(blurRadius: 4)],
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 188, 60, 214),
-                      Color.fromARGB(255, 221, 177, 223)
-                    ], // Replace with your desired gradient colors
-                    begin: Alignment.bottomLeft,
-                    end: Alignment.topRight,
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(15),
-                  ),
+              padding: const EdgeInsets.only(
+                  top: 10, bottom: 10, left: 10, right: 10),
+              decoration: const BoxDecoration(
+                // boxShadow: [BoxShadow(blurRadius: 4)],
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 188, 60, 214),
+                    Color.fromARGB(255, 221, 177, 223)
+                  ], // Replace with your desired gradient colors
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
                 ),
-                height: Get.height * 0.28,
-                width: Get.width,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        const Text(
-                          "Current Week",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
+                ),
+              ),
+              height: Get.height * 0.28,
+              width: Get.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      const Text(
+                        "Current Week",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        Text(
-                          "Total Transaction - ₹${chartController.totalAmountThisWeek}",
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Obx(
+                        () => Text(
+                          chartController.rebuildHome.value
+                              ? "Total Transaction - ₹${chartController.totalAmountThisWeek}"
+                              : "Total Transaction - ₹${chartController.totalAmountThisWeek}",
                           style: const TextStyle(
                             fontSize: 16,
                           ),
                         ),
-                      ],
+                      ),
+                    ],
+                  ),
+                  const LinexChart(),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Mon"),
+                      Text("Tue"),
+                      Text("Wed"),
+                      Text("Thu"),
+                      Text("Fri"),
+                      Text("Sat"),
+                      Text("Sun"),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Recent Transactions",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: Colors.grey,
+                          fontSize: 16),
                     ),
-                    LinexChart(),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Mon"),
-                        Text("Tue"),
-                        Text("Wed"),
-                        Text("Thu"),
-                        Text("Fri"),
-                        Text("Sat"),
-                        Text("Sun"),
-                      ],
+                    Icon(
+                      Icons.more_horiz,
+                      size: 32,
+                      color: Colors.grey,
                     )
-                  ],
-                )),
+                  ]),
+            ),
             Center(
               child: IconButton(
                 onPressed: () {

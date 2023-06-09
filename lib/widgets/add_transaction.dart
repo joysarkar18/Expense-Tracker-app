@@ -1,3 +1,4 @@
+import 'package:expense_app/Controller/ChartController/chart_controller.dart';
 import 'package:expense_app/Controller/TransactionController/transaction_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +14,7 @@ class AddTransactionAlert extends StatefulWidget {
 class _AddTransactionAlertState extends State<AddTransactionAlert> {
   TransactionController transactionController =
       Get.put(TransactionController());
+  ChartController chartController = Get.put(ChartController());
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -339,6 +341,7 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                         transactionController.transactionNotes.text = "";
                         transactionController.transactionReason.value = "Food";
                         transactionController.transactionWith.text = "";
+                        chartController.getTransactionList();
                         Get.back();
                       },
                       child: Container(

@@ -15,23 +15,25 @@ class _LinexChartState extends State<LinexChart> {
 
   @override
   Widget build(BuildContext context) {
-    return Sparkline(
-      data: chartController.data,
-      lineColor: const Color.fromARGB(255, 255, 255, 255),
-      lineWidth: 4,
-      useCubicSmoothing: true,
-      cubicSmoothingFactor: 0.09,
-      gridLinelabelPrefix: "₹",
-      gridLineLabelPrecision: 1,
-      enableGridLines: true,
-      gridLineColor: Color.fromARGB(255, 0, 255, 0),
-      gridLineLabelColor: Color.fromARGB(255, 0, 255, 115),
-      gridLineAmount: 3,
-      gridLinelabel: (gridLineValue) {
-        return gridLineValue.toInt().toString();
-      },
-      max: 500.0,
-      min: 0.0,
-    );
+    return Obx(() => Sparkline(
+          data: chartController.data,
+          lineColor: chartController.rebuildHome.value
+              ? const Color.fromARGB(255, 255, 255, 255)
+              : Colors.white,
+          lineWidth: 4,
+          useCubicSmoothing: true,
+          cubicSmoothingFactor: 0.09,
+          gridLinelabelPrefix: "₹",
+          gridLineLabelPrecision: 1,
+          enableGridLines: true,
+          gridLineColor: Color.fromARGB(255, 0, 255, 0),
+          gridLineLabelColor: Color.fromARGB(255, 0, 255, 115),
+          gridLineAmount: 3,
+          gridLinelabel: (gridLineValue) {
+            return gridLineValue.toInt().toString();
+          },
+          max: 500.0,
+          min: 0.0,
+        ));
   }
 }

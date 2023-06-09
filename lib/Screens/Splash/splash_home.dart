@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:expense_app/Controller/ChartController/chart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -20,6 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ChartController chartController = Get.put(ChartController());
+    chartController.getTransactionList();
     return Scaffold(
       backgroundColor: Get.isDarkMode ? Colors.black : Colors.blue.shade50,
       body: Center(
