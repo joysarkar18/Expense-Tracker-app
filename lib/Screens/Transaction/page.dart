@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_app/Controller/TransactionController/transaction_controller.dart';
+import 'package:expense_app/Screens/Home/home_screen.dart';
 import 'package:expense_app/Screens/Transaction/list_tile.dart';
 import 'package:expense_app/Screens/Transaction/transaction_list.dart';
 import 'package:flutter/material.dart';
@@ -104,63 +105,70 @@ class _Page1State extends State<Page1> {
                         child: Text("Don't have any Transactions yet"),
                       );
                     } else {
-                      return ListView.builder(
-                        itemCount: transactionList.length,
-                        itemBuilder: (context, index) {
-                          if (transactionController.allPaidRecived.value == 0) {
-                            return TransactionTile(
-                              amount: double.parse(
-                                  transactionList[index]["ammount"].toString()),
-                              toWhom: transactionList[index]["toWhom"],
-                              paidOrRecived: transactionList[index]
-                                  ["paidOrRecived"],
-                              dateTime: (transactionList[index]["dateTime"]
-                                      as Timestamp)
-                                  .toDate(),
-                            );
-                          } else if (transactionController
-                                  .allPaidRecived.value ==
-                              1) {
-                            if (transactionList[index]["paidOrRecived"] == 0) {
-                              return TransactionTile(
-                                amount: double.parse(transactionList[index]
-                                        ["ammount"]
-                                    .toString()),
-                                toWhom: transactionList[index]["toWhom"],
-                                paidOrRecived: transactionList[index]
-                                    ["paidOrRecived"],
-                                dateTime: (transactionList[index]["dateTime"]
-                                        as Timestamp)
-                                    .toDate(),
-                              );
-                            } else {
-                              return const Text(
-                                "",
-                                style: TextStyle(fontSize: 0),
-                              );
-                            }
-                          } else {
-                            if (transactionList[index]["paidOrRecived"] == 1) {
-                              return TransactionTile(
-                                amount: double.parse(transactionList[index]
-                                        ["ammount"]
-                                    .toString()),
-                                toWhom: transactionList[index]["toWhom"],
-                                paidOrRecived: transactionList[index]
-                                    ["paidOrRecived"],
-                                dateTime: (transactionList[index]["dateTime"]
-                                        as Timestamp)
-                                    .toDate(),
-                              );
-                            } else {
-                              return const Text(
-                                "",
-                                style: TextStyle(fontSize: 0),
-                              );
-                            }
-                          }
-                        },
-                      );
+                      return ScrollConfiguration(
+                          behavior: MyBehavior(),
+                          child: ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            itemCount: transactionList.length,
+                            itemBuilder: (context, index) {
+                              if (transactionController.allPaidRecived.value ==
+                                  0) {
+                                return TransactionTile(
+                                  amount: double.parse(transactionList[index]
+                                          ["ammount"]
+                                      .toString()),
+                                  toWhom: transactionList[index]["toWhom"],
+                                  paidOrRecived: transactionList[index]
+                                      ["paidOrRecived"],
+                                  dateTime: (transactionList[index]["dateTime"]
+                                          as Timestamp)
+                                      .toDate(),
+                                );
+                              } else if (transactionController
+                                      .allPaidRecived.value ==
+                                  1) {
+                                if (transactionList[index]["paidOrRecived"] ==
+                                    0) {
+                                  return TransactionTile(
+                                    amount: double.parse(transactionList[index]
+                                            ["ammount"]
+                                        .toString()),
+                                    toWhom: transactionList[index]["toWhom"],
+                                    paidOrRecived: transactionList[index]
+                                        ["paidOrRecived"],
+                                    dateTime: (transactionList[index]
+                                            ["dateTime"] as Timestamp)
+                                        .toDate(),
+                                  );
+                                } else {
+                                  return const Text(
+                                    "",
+                                    style: TextStyle(fontSize: 0),
+                                  );
+                                }
+                              } else {
+                                if (transactionList[index]["paidOrRecived"] ==
+                                    1) {
+                                  return TransactionTile(
+                                    amount: double.parse(transactionList[index]
+                                            ["ammount"]
+                                        .toString()),
+                                    toWhom: transactionList[index]["toWhom"],
+                                    paidOrRecived: transactionList[index]
+                                        ["paidOrRecived"],
+                                    dateTime: (transactionList[index]
+                                            ["dateTime"] as Timestamp)
+                                        .toDate(),
+                                  );
+                                } else {
+                                  return const Text(
+                                    "",
+                                    style: TextStyle(fontSize: 0),
+                                  );
+                                }
+                              }
+                            },
+                          ));
                     }
                   } else {
                     return const Center(

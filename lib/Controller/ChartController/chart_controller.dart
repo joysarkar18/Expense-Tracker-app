@@ -8,6 +8,7 @@ class ChartController extends GetxController {
   var totalAmountThisWeek = 0.0;
   var data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
   RxBool rebuildHome = false.obs;
+  var recentTransactions = [];
 
   void getTransactionList() async {
     var weektransactionData = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -54,6 +55,7 @@ class ChartController extends GetxController {
     totalAmountThisWeek = total;
     data = weektransactionData;
     rebuildHome.value = !rebuildHome.value;
-    print(data);
+
+    recentTransactions = transactionList.sublist(0, 9);
   }
 }

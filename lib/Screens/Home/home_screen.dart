@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_app/Controller/ChartController/chart_controller.dart';
 import 'package:expense_app/Screens/Home/chart.dart';
+import 'package:expense_app/Screens/Home/home_transaction_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -111,8 +112,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Text(
                         "Current Week",
                         style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                       const SizedBox(
@@ -124,7 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ? "Total Transaction - ₹${chartController.totalAmountThisWeek}"
                               : "Total Transaction - ₹${chartController.totalAmountThisWeek}",
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w800,
                           ),
                         ),
                       ),
@@ -168,19 +170,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ]),
             ),
-            Center(
-              child: IconButton(
-                onPressed: () {
-                  Authentication.instance.logOut();
-                },
-                icon: const Icon(
-                  Icons.cancel_outlined,
-                ),
-              ),
+            SizedBox(
+              height: 10,
             ),
+            Container(
+                padding: EdgeInsets.only(bottom: 10),
+                height: Get.height * 0.435,
+                child: ScrollConfiguration(
+                  behavior: MyBehavior(),
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: chartController.recentTransactions.length,
+                    itemBuilder: (context, index) {
+                      return HomeScreenTransactionTile(
+                        reason: chartController.recentTransactions[index]
+                            ["reason"],
+                      );
+                    },
+                  ),
+                )),
           ],
         ),
       ),
     );
+  }
+}
+
+class MyBehavior extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
   }
 }
