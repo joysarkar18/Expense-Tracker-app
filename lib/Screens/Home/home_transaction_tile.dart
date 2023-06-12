@@ -20,9 +20,9 @@ class HomeScreenTransactionTile extends StatelessWidget {
               //         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFIN_HGzza_aVyMoq2zQGRbGkO85NUo2mD1Q&usqp=CAU"),
               // fit: BoxFit.cover),
               borderRadius: BorderRadius.all(Radius.circular(10))),
-          height: 80,
-          width: 90,
-          child: Lottie.asset("Assets/Lottie/Food.json"),
+          height: 60,
+          width: 75,
+          child: Lottie.asset("Assets/Lottie/$reason.json"),
         ),
         SizedBox(
           width: 100,

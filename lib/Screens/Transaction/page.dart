@@ -44,7 +44,7 @@ class _Page1State extends State<Page1> {
                     decoration: BoxDecoration(
                         color: transactionController.allPaidRecived.value == 0
                             ? Colors.blue
-                            : Colors.white,
+                            : const Color.fromARGB(0, 255, 255, 255),
                         borderRadius: BorderRadius.circular(15)),
                     child: const Center(
                       child: Text(
@@ -63,7 +63,7 @@ class _Page1State extends State<Page1> {
                     decoration: BoxDecoration(
                         color: transactionController.allPaidRecived.value == 1
                             ? Colors.blue
-                            : Colors.white,
+                            : const Color.fromARGB(0, 255, 255, 255),
                         borderRadius: BorderRadius.circular(15)),
                     width: 80,
                     child: const Center(
@@ -79,7 +79,7 @@ class _Page1State extends State<Page1> {
                     decoration: BoxDecoration(
                         color: transactionController.allPaidRecived.value == 2
                             ? Colors.blue
-                            : Colors.white,
+                            : Color.fromARGB(0, 165, 142, 142),
                         borderRadius: BorderRadius.circular(15)),
                     width: 100,
                     child: const Center(

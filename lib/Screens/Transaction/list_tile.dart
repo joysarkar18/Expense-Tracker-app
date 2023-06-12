@@ -1,5 +1,6 @@
 import 'package:expense_app/Controller/TransactionController/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class TransactionTile extends StatelessWidget {
@@ -19,7 +20,11 @@ class TransactionTile extends StatelessWidget {
     DateTime date = dateTime;
     String formattedDate = DateFormat.yMMMEd().format(date);
     print(formattedDate);
-    return Card(
+    return Container(
+      decoration: BoxDecoration(
+          border: Border(
+              bottom: BorderSide(
+                  color: context.isDarkMode ? Colors.white : Colors.grey))),
       child: ListTile(
         leading: paidOrRecived == 0
             ? const Icon(
@@ -36,14 +41,10 @@ class TransactionTile extends StatelessWidget {
               : dateTime.day == DateTime.now().day - 1
                   ? "Tommrow"
                   : formattedDate,
-          style: const TextStyle(
-              fontWeight: FontWeight.w300, color: Colors.black, fontSize: 14),
+          style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
         ),
         subtitle: Text(toWhom,
-            style: const TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.w700)),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
         trailing: Text(
           "₹ $amount",
           style: TextStyle(
