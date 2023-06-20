@@ -123,6 +123,8 @@ class _Page1State extends State<Page1> {
                                   dateTime: (transactionList[index]["dateTime"]
                                           as Timestamp)
                                       .toDate(),
+                                  reason: transactionList[index]["reason"],
+                                  note: transactionList[index]["notes"],
                                 );
                               } else if (transactionController
                                       .allPaidRecived.value ==
@@ -139,6 +141,8 @@ class _Page1State extends State<Page1> {
                                     dateTime: (transactionList[index]
                                             ["dateTime"] as Timestamp)
                                         .toDate(),
+                                    reason: transactionList[index]["reason"],
+                                    note: transactionList[index]["notes"],
                                   );
                                 } else {
                                   return const Text(
@@ -159,6 +163,8 @@ class _Page1State extends State<Page1> {
                                     dateTime: (transactionList[index]
                                             ["dateTime"] as Timestamp)
                                         .toDate(),
+                                    reason: transactionList[index]["reason"],
+                                    note: transactionList[index]["notes"],
                                   );
                                 } else {
                                   return const Text(

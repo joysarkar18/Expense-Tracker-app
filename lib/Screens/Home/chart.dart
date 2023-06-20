@@ -32,7 +32,7 @@ class _LinexChartState extends State<LinexChart> {
           gridLinelabel: (gridLineValue) {
             return gridLineValue.toInt().toString();
           },
-          max: 1500.0,
+          max: 100500.0,
           min: 0.0,
         ));
   }

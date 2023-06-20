@@ -44,6 +44,8 @@ class _TransListState extends State<TransList> {
                     paidOrRecived: transactionList[index]["paidOrRecived"],
                     dateTime: (transactionList[index]["dateTime"] as Timestamp)
                         .toDate(),
+                    reason: transactionList[index]["reason"],
+                    note: transactionList[index]["notes"],
                   );
                 } else if (transactionController.allPaidRecived.value == 1) {
                   if (transactionList[index]["paidOrRecived"] == 0) {
@@ -55,6 +57,8 @@ class _TransListState extends State<TransList> {
                       dateTime:
                           (transactionList[index]["dateTime"] as Timestamp)
                               .toDate(),
+                      reason: transactionList[index]["reason"],
+                      note: transactionList[index]["notes"],
                     );
                   }
                 } else {
@@ -67,6 +71,8 @@ class _TransListState extends State<TransList> {
                       dateTime:
                           (transactionList[index]["dateTime"] as Timestamp)
                               .toDate(),
+                      reason: transactionList[index]["reason"],
+                      note: transactionList[index]["notes"],
                     );
                   }
                 }

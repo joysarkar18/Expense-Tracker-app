@@ -8,17 +8,23 @@ class TransactionTile extends StatelessWidget {
   String toWhom;
   int paidOrRecived;
   DateTime dateTime;
+  String reason;
+  String note;
   TransactionTile(
       {super.key,
       required this.amount,
       required this.toWhom,
       required this.paidOrRecived,
-      required this.dateTime});
+      required this.dateTime,
+      required this.reason,
+      required this.note});
 
   @override
   Widget build(BuildContext context) {
     DateTime date = dateTime;
     String formattedDate = DateFormat.yMMMEd().format(date);
+    String time = DateFormat.jm().format(
+        DateFormat("hh:mm:ss").parse("${dateTime.hour}:${dateTime.minute}:00"));
     print(formattedDate);
     return Container(
       decoration: BoxDecoration(
@@ -37,14 +43,18 @@ class TransactionTile extends StatelessWidget {
               ),
         title: Text(
           dateTime.day == DateTime.now().day
-              ? "Today"
+              ? "Today ${time} ($reason)"
               : dateTime.day == DateTime.now().day - 1
-                  ? "Tommrow"
-                  : formattedDate,
-          style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
+                  ? "Tommrow ${time} ($reason)"
+                  : "$formattedDate ${time} ($reason)",
+          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
         ),
-        subtitle: Text(toWhom,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+        subtitle: Row(children: [
+          Text("$toWhom - ",
+              style:
+                  const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+          Text("$note")
+        ]),
         trailing: Text(
           "₹ $amount",
           style: TextStyle(

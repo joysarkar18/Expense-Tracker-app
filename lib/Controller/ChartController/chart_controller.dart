@@ -55,7 +55,10 @@ class ChartController extends GetxController {
     totalAmountThisWeek = total;
     data = weektransactionData;
     rebuildHome.value = !rebuildHome.value;
-
-    recentTransactions = transactionList.sublist(0, 9);
+    if (transactionList.length >= 10) {
+      recentTransactions = transactionList.sublist(0, 9);
+    } else {
+      recentTransactions = transactionList;
+    }
   }
 }

@@ -174,21 +174,33 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 10,
             ),
             Container(
-                padding: EdgeInsets.only(bottom: 10),
-                height: Get.height * 0.435,
-                child: ScrollConfiguration(
-                  behavior: MyBehavior(),
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: chartController.recentTransactions.length,
-                    itemBuilder: (context, index) {
-                      return HomeScreenTransactionTile(
-                        reason: chartController.recentTransactions[index]
-                            ["reason"],
-                      );
-                    },
-                  ),
-                )),
+              padding: EdgeInsets.only(bottom: 10),
+              height: Get.height * 0.435,
+              child: chartController.recentTransactions.length == 0
+                  ? const Center(
+                      child: Text("No Recent Transactions"),
+                    )
+                  : ScrollConfiguration(
+                      behavior: MyBehavior(),
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: chartController.recentTransactions.length,
+                        itemBuilder: (context, index) {
+                          return HomeScreenTransactionTile(
+                            reason: chartController.recentTransactions[index]
+                                ["reason"],
+                            amount: chartController.recentTransactions[index]
+                                ["ammount"],
+                            date: (chartController.recentTransactions[index]
+                                    ["dateTime"] as Timestamp)
+                                .toDate(),
+                            paidOrRecived: chartController
+                                .recentTransactions[index]["paidOrRecived"],
+                          );
+                        },
+                      ),
+                    ),
+            ),
           ],
         ),
       ),
