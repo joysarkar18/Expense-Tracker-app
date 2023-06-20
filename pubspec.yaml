@@ -49,6 +49,7 @@ dependencies:
   mrx_charts: ^0.1.3
   fl_chart: ^0.62.0
   intl: ^0.17.0
+  motion: ^1.4.0
   # google_fonts: ^4.0.4
 
 dev_dependencies:

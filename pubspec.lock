@@ -320,6 +320,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  motion:
+    dependency: "direct main"
+    description:
+      name: motion
+      sha256: "1764b7a4c0d5509dba58dc6cfca80c03e3f049e0175c26d0a096f76451a5f23e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
+  motion_platform_interface:
+    dependency: transitive
+    description:
+      name: motion_platform_interface
+      sha256: "0b29234fef24d18cd7c3d3f1a2a2f67998aed1c2fb8f5d484900cc9b012328de"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
+  motion_web:
+    dependency: transitive
+    description:
+      name: motion_web
+      sha256: "223699d57c7f3dff7d0ffbfb9b3c8b083b9ef3dc0d260040c367c899fd38a4a2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   mrx_charts:
     dependency: "direct main"
     description:

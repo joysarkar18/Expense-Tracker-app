@@ -15,8 +15,15 @@ class _LinexChartState extends State<LinexChart> {
 
   @override
   Widget build(BuildContext context) {
+    var data = chartController.data;
+    double max = -99999999.9;
+    for (int i = 0; i < data.length; i++) {
+      if (data[i] > max) {
+        max = data[i];
+      }
+    }
     return Obx(() => Sparkline(
-          data: chartController.data,
+          data: data,
           lineColor: chartController.rebuildHome.value
               ? const Color.fromARGB(255, 255, 255, 255)
               : Colors.white,
@@ -32,7 +39,7 @@ class _LinexChartState extends State<LinexChart> {
           gridLinelabel: (gridLineValue) {
             return gridLineValue.toInt().toString();
           },
-          max: 100500.0,
+          max: max,
           min: 0.0,
         ));
   }

@@ -25,6 +25,11 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
       child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           child: Container(
+            decoration: BoxDecoration(
+                color: context.isDarkMode
+                    ? const Color.fromARGB(163, 0, 0, 0)
+                    : Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(15))),
             margin: EdgeInsets.zero,
             padding: const EdgeInsets.all(20),
             height: Get.height * 0.7,
@@ -40,7 +45,8 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 20.sp,
-                          color: Colors.black,
+                          color:
+                              context.isDarkMode ? Colors.white : Colors.black,
                         )),
                     SizedBox(
                       height: 10.h,
@@ -149,11 +155,13 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(" Enter Amount",
+                        Text(" Enter Amount",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 16,
-                              color: Colors.black,
+                              color: context.isDarkMode
+                                  ? Colors.white
+                                  : Colors.black,
                             )),
                         const SizedBox(
                           height: 5,
@@ -163,6 +171,9 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                           width: Get.width * 0.9,
                           padding: const EdgeInsets.only(right: 20, left: 4),
                           decoration: BoxDecoration(
+                            color: context.isDarkMode
+                                ? Color.fromARGB(187, 0, 0, 0)
+                                : Colors.white,
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(15)),
                             border: Border.all(
@@ -188,7 +199,9 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                                             0
                                         ? "Amount Paid?"
                                         : "Amount Recived!",
-                                    fillColor: Colors.white,
+                                    fillColor: context.isDarkMode
+                                        ? Colors.black38
+                                        : Colors.white,
                                     focusedBorder: InputBorder.none,
                                     border: InputBorder.none,
                                   ),
@@ -221,11 +234,13 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(" Transaction with",
+                        Text(" Transaction with",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 16,
-                              color: Colors.black,
+                              color: context.isDarkMode
+                                  ? Colors.white
+                                  : Colors.black,
                             )),
                         const SizedBox(
                           height: 5,
@@ -235,6 +250,9 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                           width: Get.width * 0.9,
                           padding: const EdgeInsets.only(right: 20, left: 4),
                           decoration: BoxDecoration(
+                            color: context.isDarkMode
+                                ? Color.fromARGB(187, 0, 0, 0)
+                                : Colors.white,
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(15)),
                             border: Border.all(
@@ -248,10 +266,12 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                                   child: TextField(
                                 controller:
                                     transactionController.transactionWith,
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                   hintText: "Enter Name",
                                   border: InputBorder.none,
-                                  fillColor: Colors.white,
+                                  fillColor: context.isDarkMode
+                                      ? Colors.black38
+                                      : Colors.white,
                                 ),
                               )),
                               // const SizedBox(width: 20),
@@ -270,7 +290,6 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 16,
-                              color: Colors.black,
                             )),
                         const SizedBox(
                           height: 5,
@@ -280,6 +299,9 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                           width: Get.width * 0.9,
                           padding: const EdgeInsets.only(right: 20, left: 4),
                           decoration: BoxDecoration(
+                            color: context.isDarkMode
+                                ? Color.fromARGB(187, 0, 0, 0)
+                                : Colors.white,
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(15)),
                             border: Border.all(
@@ -293,10 +315,12 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                                   child: TextField(
                                 controller:
                                     transactionController.transactionNotes,
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                   hintText: "write here",
                                   border: InputBorder.none,
-                                  fillColor: Colors.white,
+                                  fillColor: context.isDarkMode
+                                      ? Colors.black38
+                                      : Colors.white,
                                 ),
                               )),
                               // const SizedBox(width: 20),
@@ -315,7 +339,6 @@ class _AddTransactionAlertState extends State<AddTransactionAlert> {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 16,
-                              color: Colors.black,
                             )),
                         const SizedBox(
                           height: 5,
