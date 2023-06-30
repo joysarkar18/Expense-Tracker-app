@@ -7,13 +7,18 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.width,
-      child: Row(children: [
-        Container(
-          height: 300,
-          color: Colors.purple,
-        )
-      ]),
+      height: Get.height,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: Get.width,
+            height: Get.height * 0.3,
+            decoration: BoxDecoration(color: Colors.purple),
+            child: Text("profile"),
+          ),
+        ],
+      ),
     );
   }
 }
