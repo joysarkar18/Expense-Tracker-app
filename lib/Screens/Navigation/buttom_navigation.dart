@@ -9,7 +9,5 @@ class ButtomNavigationController extends GetxController {
   List pageList = [
     const HomeScreen(),
     const TransactionDcreen(),
-    const GraphScreen(),
-    const ProfileScreen()
   ];
 }

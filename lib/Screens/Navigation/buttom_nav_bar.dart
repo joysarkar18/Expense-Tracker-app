@@ -49,6 +49,20 @@ class Home extends StatelessWidget {
                                   ? Colors.purple
                                   : Colors.blue,
                             )),
+                        InkWell(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (builder) {
+                                return const AddTransactionAlert();
+                              },
+                            );
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 100,
+                          ),
+                        ),
                         IconButton(
                             onPressed: () {
                               navcontroller.pageIndex.value = 1;
@@ -59,40 +73,6 @@ class Home extends StatelessWidget {
                                   ? Colors.purple
                                   : Colors.blue,
                             )),
-                        InkWell(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (builder) {
-                                return const AddTransactionAlert();
-                              },
-                            );
-                          },
-                          child: const SizedBox(
-                            height: 100,
-                            width: 100,
-                          ),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              navcontroller.pageIndex.value = 2;
-                            },
-                            icon: Icon(
-                              Icons.signal_cellular_alt_rounded,
-                              color: navcontroller.pageIndex.value == 2
-                                  ? Colors.purple
-                                  : Colors.blue,
-                            )),
-                        IconButton(
-                            onPressed: () {
-                              navcontroller.pageIndex.value = 3;
-                            },
-                            icon: Icon(
-                              Icons.person,
-                              color: navcontroller.pageIndex.value == 3
-                                  ? Colors.purple
-                                  : Colors.blue,
-                            ))
                       ],
                     )),
                 Center(
